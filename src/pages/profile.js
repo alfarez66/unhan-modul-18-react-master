@@ -40,11 +40,24 @@ const Profile = () => {
         // 1. Ambil data user dari localstorage
         const user = localStorage.getItem('user')
         // 2. buat fungsi verifikasi token yang sama seperti di halaman home
-        
+        function verifyToken(){
+            axios.post('http://localhost:3000/verify', {
+                token:localStorage.getItem('token'),
+                withCredentials: true})
+            .then(function (response) {
+                if(response.status(200)&&(response.data.id===localStorage.getItem('id'))){
+                    setIsLogin(true)
+                    alert('Register Berhasil')
+                    console.log(response)
+                }else{
+                    window.location.href = '/login';
+                }
+          })
+        }
         // panggil fungsi verifikasi token di bawah sini
-
+        verifyToken()
         // 3. Lakukan setUser dengan data user yang didapat dari localstorage
-
+        setUser(localStorage.getItem('user'))
     }, [])
 
     const handleToHome = () => {

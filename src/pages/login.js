@@ -38,8 +38,10 @@ const Login = () => {
       .then(function (response) {
         const token = response.data.token
         const user = response.data.user
+        const id = response.data.id
         localStorage.setItem('token', token)
         localStorage.setItem('user', user)
+        localStorage.setItem('id',id)
         window.location.href = '/profile';
       })
       .catch(function (error) {

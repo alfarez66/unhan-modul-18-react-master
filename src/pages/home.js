@@ -42,8 +42,23 @@ const Home = () => {
         // /verify pada backend dengan mengirimkan token yang didapat dari localstorage.
         // bila response status-nya 200 dan id dari response sama dengan id user pada localstorage,
         // set isLogin menjadi true. bila tidak, redirect ke halaman login
+        function verifyToken(){
+            axios.post('http://localhost:3000/verify', {
+            token:localStorage.getItem('token'),
+            withCredentials: true})
+        .then(function (response) {
+            if(response.status(200)&&(response.data.id===localStorage.getItem('id'))){
+                setIsLogin(true)
+                alert('Register Berhasil')
+                console.log(response)
+            }else{
+                window.location.href = '/login';
+            }
+        })
+        }
         
         // 4. Panggil fungsi verifikasi token
+        verifyToken()
     }, [])
 
     const handleToHome = () => {
