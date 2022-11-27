@@ -67,7 +67,7 @@ const Home = () => {
 
     if(!isLogin) {
         return (
-            <ThemeProvider theme={theme}>
+            <ThemeProvider data-testid="home-1" theme={theme}>
                 <Container component="main" maxWidth="xs">
                     <CssBaseline />
                     <Box

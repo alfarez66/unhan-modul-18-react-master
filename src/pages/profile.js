@@ -57,7 +57,9 @@ const Profile = () => {
         // panggil fungsi verifikasi token di bawah sini
         verifyToken()
         // 3. Lakukan setUser dengan data user yang didapat dari localstorage
-        setUser(localStorage.getItem('user'))
+        setUser(curVal=>({
+          ...curVal,
+        }))
     }, [])
 
     const handleToHome = () => {
